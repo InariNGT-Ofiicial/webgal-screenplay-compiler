@@ -1,0 +1,282 @@
+{
+  "_note": [
+    "全局音效清单 —— **资产定义的唯一真源**。JS 侧（sfx-rules.mjs）与 Python 侧的生成脚本都读这个文件，不要各写一份。",
+    "「哪段文本触发哪个音效」的规则**不在这里**，在 sfx-rules.mjs（规则与资产分开，避免两处漂移）。",
+    "★ 命名即契约：真实音效做好后**同名覆盖** `game/effect/<id>.wav` 即可，零代码改动。",
+    "★ 改 format.ext 可整体换格式（如将来替换成 .mp3），脚本侧读同一字段，不会两边不一致。"
+  ],
+  "version": 1,
+  "format": { "rate": 44100, "channels": 1, "bits": 16, "ext": "wav", "dir": "game/effect" },
+  "oneShots": [
+    {
+      "id": "se_gunshot",
+      "desc": "枪声·单发（封闭室内，长混响）",
+      "synth": "gunshot",
+      "p": { "len": 1.6, "bodyHz": [260, 2400], "bodyTau": 0.055, "tailTau": 0.55, "sub": 62, "rev": 0.42, "peak": 0.94 },
+      "volume": 92,
+      "note": "剧本用它写「嘭——！」（处决者扣动扳机）与室内枪响「砰！」"
+    },
+    {
+      "id": "se_gunshot_supp",
+      "desc": "消音枪声（沉闷、无高频爆音）",
+      "synth": "gunshot",
+      "p": { "len": 0.9, "bodyHz": [160, 900], "bodyTau": 0.045, "tailTau": 0.22, "sub": 70, "rev": 0.18, "peak": 0.82 },
+      "volume": 82,
+      "hidden": true,
+      "note": "「装消音器的步枪」两声的**原型件**：只作为 se_gunshot_supp_x2 的合成素材，不落盘"
+    },
+    {
+      "id": "se_gunshot_supp_x2",
+      "desc": "消音枪声·两发（两声截然不同、沉闷的枪响）",
+      "synth": "burst",
+      "p": { "len": 1.3, "n": 2, "gap": 0.22, "jitter": 0.03, "proto": "se_gunshot_supp", "peak": 0.84 },
+      "volume": 84,
+      "note": "★ 单声道通道决定了「两声」必须预先合成 —— 连发两条指令会互相掐掉"
+    },
+    {
+      "id": "se_gunfire_burst",
+      "desc": "连发枪声·三发（贴墙掠过）",
+      "synth": "burst",
+      "p": { "len": 1.4, "n": 3, "gap": 0.135, "jitter": 0.02, "proto": "se_gunshot", "peak": 0.94 },
+      "volume": 92,
+      "note": "「砰！砰！砰！」子弹贴墙擦过"
+    },
+    {
+      "id": "se_body_fall",
+      "desc": "身体重重砸在地板上（低频+布料）",
+      "synth": "impact",
+      "p": { "len": 0.9, "bodyHz": [60, 420], "bodyTau": 0.10, "tailTau": 0.16, "sub": 48, "subTau": 0.12, "cloth": 0.5, "peak": 0.86 },
+      "volume": 86
+    },
+    {
+      "id": "se_blunt_hit",
+      "desc": "钝器击打（板砖砸后脑，短促无尾音）",
+      "synth": "impact",
+      "p": { "len": 0.55, "bodyHz": [90, 700], "bodyTau": 0.055, "tailTau": 0.09, "sub": 58, "subTau": 0.08, "peak": 0.88 },
+      "volume": 88
+    },
+    {
+      "id": "se_console_hit",
+      "desc": "拳头砸在控制台（塑料/金属共鸣）",
+      "synth": "impact",
+      "p": { "len": 0.8, "bodyHz": [140, 1200], "bodyTau": 0.07, "tailTau": 0.18, "sub": 55, "subTau": 0.09, "metal": [[420, 0.10], [1180, 0.07]], "peak": 0.88 },
+      "volume": 88
+    },
+    {
+      "id": "se_bolt_seq",
+      "desc": "枪械上膛·三连（清脆金属机械声）",
+      "synth": "burst",
+      "p": { "len": 1.2, "n": 3, "gap": 0.20, "jitter": 0.03, "proto": "se_bolt_click", "peak": 0.80 },
+      "volume": 84
+    },
+    {
+      "id": "se_bolt_click",
+      "desc": "单次上膛/金属卡榫",
+      "synth": "mech",
+      "p": { "len": 0.30, "metal": [[1850, 0.030], [2600, 0.022], [3700, 0.016]], "noiseHz": [1500, 9000], "noiseTau": 0.006, "peak": 0.80 },
+      "volume": 80,
+      "hidden": true
+    },
+    {
+      "id": "se_explosion",
+      "desc": "爆炸·近（含金属结构，长尾）",
+      "synth": "explosion",
+      "p": { "len": 3.2, "bodyTau": 0.85, "rumbleHz": 42, "rumbleTau": 1.5, "crackle": 0.35, "rev": 0.40, "metal": 0.35, "peak": 1.0 },
+      "volume": 96
+    },
+    {
+      "id": "se_explosion_far",
+      "desc": "爆炸·远（闷、低频为主、无高频碎裂）",
+      "synth": "explosion",
+      "p": { "len": 3.0, "bodyTau": 0.55, "rumbleHz": 34, "rumbleTau": 2.0, "crackle": 0.05, "rev": 0.55, "metal": 0.0, "lp": 900, "peak": 0.90 },
+      "volume": 92
+    },
+    {
+      "id": "se_metal_tray",
+      "desc": "金属托盘坠落 + 器械散落一地",
+      "synth": "clatter",
+      "p": { "len": 2.2, "n": 9, "gap": 0.075, "jitter": 0.05, "metal": [[900, 0.10], [1600, 0.08], [2850, 0.06], [4200, 0.045]], "spread": 1.1, "peak": 0.90 },
+      "volume": 88
+    },
+    {
+      "id": "se_metal_clink",
+      "desc": "小金属件落地弹跳（烟盒大小样品盒）",
+      "synth": "clatter",
+      "p": { "len": 0.95, "n": 4, "gap": 0.16, "jitter": 0.03, "decay": 0.72, "metal": [[1350, 0.07], [2200, 0.05], [3900, 0.035]], "spread": 0.35, "peak": 0.82 },
+      "volume": 84
+    },
+    {
+      "id": "se_glass_crash",
+      "desc": "整排玻璃瓶回收箱被拽倒",
+      "synth": "glass",
+      "p": { "len": 2.6, "n": 34, "span": 1.3, "hp": 2600, "bodyTau": 0.35, "peak": 0.95 },
+      "volume": 92
+    },
+    {
+      "id": "se_wood_break",
+      "desc": "木材断裂 → 整面书架从中心坍塌",
+      "synth": "woodbreak",
+      "p": { "len": 2.8, "crackTau": 0.30, "collapseAt": 0.55, "collapseTau": 0.55, "lp": 1600, "peak": 0.94 },
+      "volume": 92
+    },
+    {
+      "id": "se_whoosh_bullet",
+      "desc": "子弹破空掠过（极短、细、带多普勒下滑）",
+      "synth": "whoosh",
+      "p": { "len": 0.5, "f0": 4200, "f1": 700, "q": 6, "peak": 0.72 },
+      "volume": 78
+    },
+    {
+      "id": "se_impact_soft",
+      "desc": "命中·闷（头盔上爆开一团血花）",
+      "synth": "impact",
+      "p": { "len": 0.45, "bodyHz": [110, 520], "bodyTau": 0.035, "tailTau": 0.06, "wet": 0.55, "peak": 0.80 },
+      "volume": 82
+    },
+    {
+      "id": "se_staff_thud",
+      "desc": "手杖重重顿在木地板上（震落梁上积尘）",
+      "synth": "impact",
+      "p": { "len": 1.1, "bodyHz": [70, 380], "bodyTau": 0.12, "tailTau": 0.45, "sub": 44, "subTau": 0.22, "metal": [[220, 0.18]], "peak": 0.90 },
+      "volume": 92
+    },
+    {
+      "id": "se_alarm_jalert",
+      "desc": "国家级警报（升降长音，撕裂夜空）",
+      "synth": "alarm",
+      "p": { "len": 4.2, "lo": 620, "hi": 1180, "period": 1.6, "peak": 0.9 },
+      "volume": 90,
+      "note": "剧本「呜——————————！！！」最高级别国家安全警报"
+    },
+    {
+      "id": "se_string_hum",
+      "desc": "琴弦低鸣（不是噪声，是乐器：按弦不发散的极低共鸣）",
+      "synth": "stringhum",
+      "p": { "len": 3.0, "f0": 98, "partials": [1, 2.01, 3.02, 4.05, 5.4], "peak": 0.62 },
+      "volume": 72,
+      "note": "★ 这条不是效果音而是**乐器声** —— 角色指尖压弦，全曲唯一的『不存在于现实世界』的声音"
+    },
+    {
+      "id": "se_comm_beep",
+      "desc": "加密通讯器提示音（轻微、干净）",
+      "synth": "beep",
+      "p": { "len": 0.34, "f": 1180, "f2": 1560, "peak": 0.66 },
+      "volume": 70
+    },
+    {
+      "id": "se_footsteps",
+      "desc": "脚步（走廊/地面，多步，带抖动）",
+      "synth": "steps",
+      "p": { "len": 3.4, "n": 7, "gap": 0.46, "jitter": 0.05, "lp": 2600, "peak": 0.72 },
+      "volume": 74
+    },
+    {
+      "id": "se_growl",
+      "desc": "低吼（非人声质感，低频调制噪声）",
+      "synth": "growl",
+      "p": { "len": 1.6, "f": 74, "vib": 5.5, "bodyHz": [90, 620], "peak": 0.78 },
+      "volume": 80
+    },
+    {
+      "id": "se_whimper",
+      "desc": "一声很低很低的呜咽（气声、弱）",
+      "synth": "whimper",
+      "p": { "len": 2.0, "f0": 330, "f1": 250, "peak": 0.55 },
+      "volume": 66
+    },
+    {
+      "id": "se_dryfire",
+      "desc": "空响（空仓击发：机械干击、没有枪声）",
+      "synth": "mech",
+      "p": { "len": 0.26, "metal": [[1500, 0.025], [2400, 0.018]], "noiseHz": [900, 6000], "noiseTau": 0.004, "peak": 0.66 },
+      "volume": 72
+    }
+  ],
+  "ambience": [
+    {
+      "id": "amb_city", "desc": "城市街头（车流底噪 + 稀疏掠过的车声）",
+      "synth": "bed", "p": { "len": 26, "layers": [["brown", 1.0, 0, 420], ["pink", 0.4, 900, 3000]], "hum": [[58, 0.05]], "events": [["whoosh", 3, 0.3]], "peak": 0.5 },
+      "volume": 30
+    },
+    {
+      "id": "amb_hospital", "desc": "高度戒严的 VIP 病房（空调极静 + 监护仪规律提示音）",
+      "synth": "bed", "p": { "len": 24, "layers": [["pink", 0.35, 0, 2600]], "hum": [[120, 0.10], [240, 0.04]], "pulse": [[2.4, 1400, 0.35, 0.06]], "peak": 0.42 },
+      "volume": 26
+    },
+    {
+      "id": "amb_safehouse", "desc": "安全屋（服务器风扇 + 空调 + 电子底噪）",
+      "synth": "bed", "p": { "len": 24, "layers": [["white", 0.5, 260, 2400], ["brown", 0.5, 0, 300]], "hum": [[100, 0.12], [300, 0.05], [900, 0.02]], "events": [["tick", 6, 0.25]], "peak": 0.45 },
+      "volume": 27
+    },
+    {
+      "id": "amb_underground", "desc": "地下设施（真实通风底床 + 滴水 + 金属应力）",
+      "synth": "bed", "p": { "len": 30, "realBed": "x/kenney_sci-fi-sounds/Audio/spaceEngineLow_001.ogg", "realGain": 0.78, "hum": [[47, 0.16], [94, 0.06]], "events": [["drip", 5, 0.5], ["creak", 2, 0.25]], "peak": 0.5 },
+      "volume": 30
+    },
+    {
+      "id": "amb_warehouse", "desc": "冷链加工厂 / 废弃仓库（压缩机 + 回声 + 滴水）",
+      "synth": "bed", "p": { "len": 26, "layers": [["brown", 0.9, 0, 340], ["white", 0.22, 200, 2200]], "hum": [[88, 0.14], [176, 0.05]], "events": [["drip", 4, 0.6], ["creak", 2, 0.3]], "peak": 0.5 },
+      "volume": 29
+    },
+    {
+      "id": "amb_room", "desc": "老旧公寓 / 胶囊旅馆（日光灯嗡 + 窗缝里的街声）",
+      "synth": "bed", "p": { "len": 22, "layers": [["pink", 0.3, 0, 2000], ["brown", 0.35, 0, 240]], "hum": [[100, 0.16], [200, 0.05]], "peak": 0.42 },
+      "volume": 25
+    },
+    {
+      "id": "amb_livingroom", "desc": "住宅客厅（室内静默 + 时钟 + 远处城市）",
+      "synth": "bed", "p": { "len": 24, "layers": [["brown", 0.35, 0, 260], ["pink", 0.28, 0, 1800]], "hum": [], "pulse": [[1.0, 2600, 0.16, 0.03]], "peak": 0.40 },
+      "volume": 25
+    },
+    {
+      "id": "amb_apartment", "desc": "顶层公寓（高处风声更明显 + 极静的室内）",
+      "synth": "bed", "p": { "len": 24, "layers": [["brown", 0.4, 0, 300], ["pink", 0.30, 120, 2600]], "hum": [[104, 0.08]], "events": [["wind", 3, 0.35]], "peak": 0.42 },
+      "volume": 26
+    },
+    {
+      "id": "amb_cabin", "desc": "货轮船舱 / 冷链集装箱（真实引擎底床 + 海浪 + 金属应力）",
+      "synth": "bed", "p": { "len": 30, "realBed": "x/kenney_sci-fi-sounds/Audio/spaceEngineLow_000.ogg", "realGain": 0.82, "hum": [[62, 0.18], [124, 0.07]], "events": [["wave", 4, 0.35], ["creak", 3, 0.2]], "swell": [0.11, 0.35], "peak": 0.52 },
+      "volume": 30
+    },
+    {
+      "id": "amb_helicopter", "desc": "直升机机舱（真实涡轮底床 + 旋翼 14Hz 拍打 + 风）",
+      "synth": "bed", "p": { "len": 30, "realBed": "x/kenney_sci-fi-sounds/Audio/spaceEngineLarge_000.ogg", "realGain": 0.62, "hum": [[2950, 0.06], [5900, 0.03]], "rotor": [14.5, 0.55], "peak": 0.55 },
+      "volume": 32
+    },
+    {
+      "id": "amb_library", "desc": "档案库 / 图书馆（极度安静 + 偶发纸页）",
+      "synth": "bed", "p": { "len": 24, "layers": [["pink", 0.22, 0, 2400]], "hum": [[118, 0.05]], "events": [["paper", 4, 0.3]], "peak": 0.36 },
+      "volume": 23
+    },
+    {
+      "id": "amb_manor", "desc": "宅邸庭园（虫鸣 + 风穿纸灯笼 + 木廊）",
+      "synth": "bed", "p": { "len": 26, "layers": [["pink", 0.28, 0, 2200], ["brown", 0.3, 0, 200]], "events": [["cricket", 9, 0.30], ["wind", 3, 0.25]], "peak": 0.44 },
+      "volume": 27
+    },
+    {
+      "id": "amb_hall", "desc": "大型会场（观众嗡鸣 + 荧光棒拍手）",
+      "synth": "bed", "p": { "len": 24, "layers": [["pink", 0.75, 120, 3600], ["brown", 0.5, 0, 300]], "swell": [0.14, 0.4], "events": [["clap", 5, 0.3]], "peak": 0.55 },
+      "volume": 30
+    },
+    {
+      "id": "amb_stage", "desc": "Live House（小型场地：低频回授 + 稀疏人声）",
+      "synth": "bed", "p": { "len": 22, "layers": [["pink", 0.45, 90, 3000], ["brown", 0.55, 0, 260]], "hum": [[70, 0.10], [140, 0.05]], "peak": 0.5 },
+      "volume": 28
+    },
+    {
+      "id": "amb_corridor", "desc": "走廊 / 电梯前室（静默 + 极远的人声，默认底噪）",
+      "synth": "bed", "p": { "len": 22, "layers": [["pink", 0.28, 0, 2200], ["brown", 0.32, 0, 240]], "hum": [[112, 0.06]], "peak": 0.40 },
+      "volume": 24
+    },
+    {
+      "id": "amb_ruin", "desc": "庄园残骸 / 爆炸现场（穿堂风 + 余烬爆裂 + 远处警报）",
+      "synth": "bed", "p": { "len": 28, "layers": [["brown", 0.8, 0, 320], ["white", 0.20, 150, 2000]], "hum": [[54, 0.08]], "events": [["ember", 10, 0.22], ["wind", 4, 0.3], ["siren_far", 1, 0.12]], "peak": 0.5 },
+      "volume": 30
+    },
+    {
+      "id": "amb_rain", "desc": "雨（可叠在任何场景上的天气层）",
+      "synth": "bed", "p": { "len": 24, "layers": [["white", 0.85, 700, 10000], ["pink", 0.35, 0, 1200]], "swell": [0.1, 0.22], "events": [["drop", 6, 0.35]], "peak": 0.52 },
+      "volume": 26
+    }
+  ]
+}

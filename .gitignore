@@ -1,0 +1,48 @@
+# ── 上游引擎（自行下载，见 README「快速开始」）──────────────────
+webgal-tool/
+
+# ── 剧本产物（由你自己的 docx 生成，作品文本不入库）──────────────
+compiler/mainline/
+compiler/mainline-src/
+compiler/_bak_splitfix/
+
+# ── 素材与产物（仓库坚持「零素材」）─────────────────────────────
+compiler/library/
+compiler/shots/
+compiler/demo-shots/
+_report/
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.wav
+*.mp3
+*.ogg
+*.woff2
+
+# ── 音效素材源缓存（`fetch-sfx.py --download` 拉下来的 CC0 压缩包）──
+#     ★ 不入库：它是**下载缓存**，出处与许可证登记在 compiler/sfx-sources.json。
+#       想换真实音效的人自己拉一次即可；只跑 make-sfx.py 的话根本不需要它。
+_sfx-src/
+
+# ── 运行时产物 ─────────────────────────────────────────────────
+__pycache__/
+.tmp-selftest/
+*.pyc
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# ── 编辑器 / 工具目录 ──────────────────────────────────────────
+.vscode/
+.idea/
+node_modules/
+.playwright-cli/
+
+# ── 本地密钥（本项目零依赖、不需要 key，但万一你加了）──────────
+.env
+.env.*
+*.key
+auth.json
+cookies*.json

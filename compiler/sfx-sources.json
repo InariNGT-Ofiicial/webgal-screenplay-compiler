@@ -1,0 +1,117 @@
+{
+  "_note": [
+    "下载素材的**出处与许可证登记**（唯一真源）。fetch-sfx.py 读它做「下载素材 → game/effect/<id>.wav」的映射与加工；",
+    "verify-sfx.mjs 读它校验「用到的每个下载素材都登记了作者/许可证/来源页」。",
+    "★ 没登记的 id = 继续用 make-sfx.py 的**合成占位**（无需署名）。两条路产出**同一批文件名**，可随时互换。",
+    "★ 许可证纪律：本项目只收 CC0（公有领域，免署名、可商用）。CC-BY 若将来要用，必须把署名写进游戏内 Staff 页。",
+    "★ 加工链（parts）：每一条音效由若干「片段」按时间叠成 —— 连发/散落/脚步这类"
+    ,"  必须在这一步合成成**单个文件**，因为 WebGAL 的 playEffect 不带 id 时是**单声道通道**，连发两条会互相掐掉。"
+  ],
+  "version": 1,
+  "sourceCache": "_sfx-src",
+  "packs": {
+    "kenney_impact": {
+      "zip": "kenney_impact-sounds.zip",
+      "url": "https://kenney.nl/media/pages/assets/impact-sounds/87b4ddecda-1677589768/kenney_impact-sounds.zip",
+      "licence": "CC0 1.0",
+      "author": "Kenney",
+      "page": "https://kenney.nl/assets/impact-sounds",
+      "extract": "x/kenney_impact-sounds/Audio"
+    },
+    "kenney_ui": {
+      "zip": "kenney_ui-audio.zip",
+      "url": "https://kenney.nl/media/pages/assets/ui-audio/490d233f68-1677590494/kenney_ui-audio.zip",
+      "licence": "CC0 1.0",
+      "author": "Kenney",
+      "page": "https://kenney.nl/assets/ui-audio",
+      "extract": "x/kenney_ui-audio/Audio"
+    },
+    "kenney_digital": {
+      "zip": "kenney_digital-audio.zip",
+      "url": "https://kenney.nl/media/pages/assets/digital-audio/216eac4753-1677590265/kenney_digital-audio.zip",
+      "licence": "CC0 1.0",
+      "author": "Kenney",
+      "page": "https://kenney.nl/assets/digital-audio",
+      "extract": "x/kenney_digital-audio/Audio"
+    },
+    "kenney_iface": {
+      "zip": "kenney_interfaceSounds.zip",
+      "url": "https://opengameart.org/sites/default/files/kenney_interfaceSounds.zip",
+      "licence": "CC0 1.0",
+      "author": "Kenney",
+      "page": "https://opengameart.org/content/interface-sounds",
+      "extract": "x/kenney_interfaceSounds/Audio"
+    },
+    "kenney_scifi": {
+      "zip": "kenney_sci-fi-sounds.zip",
+      "url": "https://kenney.nl/media/pages/assets/sci-fi-sounds/6b296f9ecf-1677589334/kenney_sci-fi-sounds.zip",
+      "licence": "CC0 1.0",
+      "author": "Kenney",
+      "page": "https://kenney.nl/assets/sci-fi-sounds",
+      "extract": "x/kenney_sci-fi-sounds/Audio"
+    },
+    "n4_basic": {
+      "zip": null,
+      "url": "https://opengameart.org/node/150707",
+      "licence": "CC0 1.0",
+      "author": "n4",
+      "page": "https://opengameart.org/node/150707",
+      "extract": null
+    },
+    "cc0_bangs": {
+      "zip": "25-CC0-bang-sfx.zip",
+      "url": "https://opengameart.org/sites/default/files/25-CC0-bang-sfx.zip",
+      "licence": "CC0 1.0",
+      "author": "OpenGameArt 社区（见包内说明）",
+      "page": "https://opengameart.org/content/25-cc0-bang-firework-sfx",
+      "extract": "x/bangs"
+    },
+    "qubodup_moans": {
+      "zip": "qubodup-GhostMoans.zip",
+      "url": "https://opengameart.org/sites/default/files/qubodup-GhostMoans.zip",
+      "licence": "CC0 1.0",
+      "author": "qubodup",
+      "page": "https://opengameart.org/content/ghost-monster-voice-moaning-growling",
+      "extract": "x/qubodup-GhostMoans/qubodup-GhostMoans/wav"
+    }
+  },
+  "entries": {
+    "se_body_fall": { "pack": "kenney_impact", "parts": [{ "f": "impactSoft_heavy_001.ogg" }, { "f": "impactSoft_medium_000.ogg", "at": 0.02, "gain": 0.7, "lp": 1200 }] },
+    "se_blunt_hit": { "pack": "kenney_impact", "parts": [{ "f": "impactPunch_medium_000.ogg", "lp": 2600 }, { "f": "impactSoft_medium_001.ogg", "at": 0.015, "gain": 0.6 }] },
+    "se_console_hit": { "pack": "kenney_impact", "parts": [{ "f": "impactPlank_medium_000.ogg" }, { "f": "impactPlate_medium_000.ogg", "at": 0.02, "gain": 0.55 }] },
+    "se_metal_tray": { "pack": "kenney_impact", "parts": [{ "f": "impactMetal_heavy_000.ogg" }, { "f": "impactMetal_light_001.ogg", "at": 0.42, "gain": 0.8 }, { "f": "impactTin_medium_000.ogg", "at": 0.95, "gain": 0.7 }, { "f": "impactPlate_light_002.ogg", "at": 1.45, "gain": 0.55 }, { "f": "impactMetal_light_003.ogg", "at": 1.85, "gain": 0.4 }] },
+    "se_metal_clink": { "pack": "kenney_impact", "parts": [{ "f": "impactMetal_light_000.ogg" }, { "f": "impactMetal_light_002.ogg", "at": 0.18, "gain": 0.62 }, { "f": "impactTin_medium_001.ogg", "at": 0.45, "gain": 0.34 }] },
+    "se_glass_crash": { "pack": "kenney_impact", "parts": [{ "f": "impactGlass_heavy_000.ogg" }, { "f": "impactGlass_light_000.ogg", "at": 0.28, "gain": 0.75 }, { "f": "impactGlass_light_002.ogg", "at": 0.62, "gain": 0.6 }, { "f": "impactGlass_medium_001.ogg", "at": 1.05, "gain": 0.5 }, { "f": "impactGlass_light_004.ogg", "at": 1.6, "gain": 0.32 }] },
+    "se_wood_break": { "pack": "kenney_impact", "parts": [{ "f": "impactWood_heavy_000.ogg" }, { "f": "impactPlank_medium_001.ogg", "at": 0.55, "gain": 0.9 }, { "f": "impactWood_medium_000.ogg", "at": 1.15, "gain": 0.7 }, { "f": "impactPlank_medium_003.ogg", "at": 1.8, "gain": 0.45 }] },
+    "se_impact_soft": { "pack": "kenney_impact", "parts": [{ "f": "impactSoft_medium_000.ogg", "lp": 2800 }] },
+    "se_staff_thud": { "pack": "kenney_impact", "parts": [{ "f": "impactWood_heavy_001.ogg", "lp": 800 }, { "f": "impactPlate_heavy_000.ogg", "at": 0.03, "gain": 0.4, "lp": 900 }] },
+    "se_footsteps": { "pack": "kenney_impact", "parts": [{ "f": "footstep_concrete_000.ogg" }, { "f": "footstep_concrete_002.ogg", "at": 0.46, "gain": 0.92 }, { "f": "footstep_concrete_001.ogg", "at": 0.93, "gain": 0.86, "pitch": 0.97 }, { "f": "footstep_concrete_004.ogg", "at": 1.38, "gain": 0.95 }, { "f": "footstep_concrete_003.ogg", "at": 1.86, "gain": 0.88, "pitch": 1.04 }, { "f": "footstep_concrete_000.ogg", "at": 2.32, "gain": 0.9 }, { "f": "footstep_concrete_002.ogg", "at": 2.78, "gain": 0.84, "pitch": 1.02 }] },
+    "se_bolt_click": { "pack": "kenney_ui", "parts": [{ "f": "switch1.ogg", "lp": 9000 }] },
+    "se_bolt_seq": { "pack": "kenney_ui", "parts": [{ "f": "switch1.ogg" }, { "f": "switch1.ogg", "at": 0.20, "gain": 0.94, "pitch": 0.95 }, { "f": "switch1.ogg", "at": 0.40, "gain": 0.98, "pitch": 1.06 }] },
+    "se_dryfire": { "pack": "kenney_ui", "parts": [{ "f": "switch1.ogg", "pitch": 1.25, "lp": 7000 }] },
+    "se_comm_beep": { "pack": "kenney_digital", "parts": [{ "f": "pepSound3.ogg" }] },
+    "se_whoosh_bullet": { "pack": "kenney_digital", "parts": [{ "f": "phaserDown2.ogg", "pitch": 1.5, "gain": 0.9 }] },
+    "se_gunshot": { "pack": "n4_basic", "parts": [{ "f": "gunshot_0.mp3" }] },
+    "se_gunshot_supp_x2": { "pack": "n4_basic", "parts": [{ "f": "gunshot_0.mp3", "pitch": 0.92, "lp": 3400 }, { "f": "gunshot_0.mp3", "at": 0.22, "gain": 0.9, "pitch": 0.88, "lp": 3000 }] },
+    "se_explosion": { "pack": "n4_basic", "parts": [{ "f": "explosion_0.mp3" }] },
+    "se_explosion_far": { "pack": "n4_basic", "parts": [{ "f": "explosion_distant_0.mp3", "lp": 900 }] },
+
+    "_note_burst": "连发用**三条不同的枪声**（不是同一条重复三遍）—— 枪声重复三次听起来像机械循环；顺带把每发的音高/音量错开一点，接近真实自动射击的听感",
+    "se_gunfire_burst": { "pack": "cc0_bangs", "parts": [{ "f": "bang_01.ogg" }, { "f": "bang_06.ogg", "at": 0.135, "gain": 0.95, "pitch": 0.97 }, { "f": "bang_04.ogg", "at": 0.27, "gain": 1.0, "pitch": 1.04 }] },
+
+    "_note_voice": "兽吼/呜咽：qubodup GhostMoans 五条，**按客观特征挑**（谱心 Hz / 过零率，不靠听感）—— 04 的谱心 313Hz / 过零 224/s 最低最闷 ⇒ 低吼；05 最短最亮（谱心 401Hz）⇒ 气声呜咽。要用作「很低的呜咽」时把增益压到 0.5。",
+    "se_growl": { "pack": "qubodup_moans", "parts": [{ "f": "qubodup-GhostMoan04.wav", "trunc": 1.6, "pitch": 0.92, "lp": 1100 }] },
+    "se_whimper": { "pack": "qubodup_moans", "parts": [{ "f": "qubodup-GhostMoan05.wav", "gain": 0.5, "lp": 3200 }] },
+
+    "_note_amb": "★ 环境床用真实素材垫底：Kenney 的 computerNoise / engineCircular / spaceEngine* 都是**精确 5.00s 的无缝循环**（实测接缝 seam≈1.0 ∈[0.4,2.5]），parts 里用 `loop:true` 按整周期拼接即天然无缝。★ 纪律：只对「**纯电子噪声型**」场景替换（服务器房/机房这类）—— 有**事件层**的床（地下/仓库的滴水、图书馆的纸页、庭园的虫鸣、直升机的旋翼拍打）**保留合成**，那些事件才是场景辨识度的来源，换掉是降级不是升级。",
+    "amb_safehouse": { "pack": "kenney_scifi", "parts": [
+      { "f": "computerNoise_000.ogg", "loop": true },
+      { "f": "computerNoise_002.ogg", "loop": true, "gain": 0.6, "lp": 2600 }
+    ] }
+  },
+  "synthesized": {
+    "_note": "以下 id **刻意保留合成**（不下载），理由写在 note 里。它们由 make-sfx.py 产出，无需署名。",
+    "se_alarm_jalert": "国家安全警报是**升降长音**，属公共安全信号，合成版本比通用素材更贴近真实 J-ALERT 听感",
+    "se_string_hum": "压弦的极低弦鸣 —— 是**乐器**不是效果音，需要精确的基频与分音，合成更可控"
+  }
+}
