@@ -1,0 +1,112 @@
+{
+  "release": "0.1.0",
+  "date": "2026-10-05",
+  "platform": "Windows",
+  "node": "v24.21.0",
+  "offlineTests": {
+    "passed": 37,
+    "failed": 0,
+    "skipped": 0
+  },
+  "syntax": {
+    "javascriptFiles": 18,
+    "malformedControlRejected": true
+  },
+  "demo": {
+    "chapters": 2,
+    "nativeScenes": 4,
+    "narrativeLines": 8,
+    "originalGeneratedAssets": 10
+  },
+  "browser": {
+    "engine": "WebGAL 4.6.5 official web release",
+    "viewport": [
+      1280,
+      720
+    ],
+    "pass": true,
+    "checks": [
+      {
+        "name": "runtime observes official snapshots",
+        "pass": true
+      },
+      {
+        "name": "two chapters save through native menus",
+        "pass": true
+      },
+      {
+        "name": "chapter autosaves use native slots one and two",
+        "pass": true
+      },
+      {
+        "name": "eight visible native save slots",
+        "pass": true
+      },
+      {
+        "name": "saved records have native preview images",
+        "pass": true
+      },
+      {
+        "name": "loading a checkpoint resumes and safely overwrites its native slot",
+        "pass": true
+      },
+      {
+        "name": "native demo music plays after a real user gesture",
+        "pass": true
+      },
+      {
+        "name": "no browser runtime errors",
+        "pass": true
+      },
+      {
+        "name": "no missing runtime assets",
+        "pass": true
+      },
+      {
+        "name": "save failure exposes a retry control",
+        "pass": true
+      },
+      {
+        "name": "trusted input cannot skip a failed chapter save",
+        "pass": true
+      },
+      {
+        "name": "retry recovers by writing the real native save",
+        "pass": true
+      }
+    ],
+    "unexpectedErrors": [],
+    "missingProjectAssets": [],
+    "optionalMissingSDKs": [
+      {
+        "status": 404,
+        "path": "/lib/live2d.min.js"
+      },
+      {
+        "status": 404,
+        "path": "/lib/live2dcubismcore.min.js"
+      }
+    ]
+  },
+  "indexAudit": {
+    "scope": "git-index",
+    "status": "passed",
+    "files": 39,
+    "findings": 0,
+    "privateVocabularyScan": "passed"
+  },
+  "ci": {
+    "configured": [
+      "Windows / Node 22",
+      "Windows / Node 24",
+      "Ubuntu / Node 22",
+      "Ubuntu / Node 24"
+    ],
+    "remoteRun": "not run; repository not published"
+  },
+  "limits": [
+    "Chinese native UI only",
+    "other themes and versions require browser revalidation",
+    "no upstream distribution or game assets in source archive"
+  ]
+}

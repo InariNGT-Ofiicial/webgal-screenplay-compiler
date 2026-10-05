@@ -1,0 +1,15 @@
+{
+  "name": "webgal-production-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Production assembly and native runtime tools for WebGAL visual novels",
+  "license": "MIT",
+  "engines": {"node": ">=22"},
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "check": "node tools/check.mjs",
+    "demo": "node tools/make-demo-assets.mjs && node tools/build.mjs examples/demo/project.json --assets build/demo-assets",
+    "audit": "node tools/audit-source.mjs"
+  }
+}

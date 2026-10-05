@@ -25,7 +25,7 @@
  *   `示例主角：xxx`           → say
  *   `示例主角（内心独白）：x`  → say + mode=inner
  *   `示例角色F（录音）：xxx`      → say + mode=vo
- *   `严铁友（对讲机）：xxx`    → say + mode=radio
+ *   `示例通讯员（对讲机）：xxx` → say + mode=radio
  *   `字幕（紧急新闻推送）：x`  → narrate + mode=subtitle
  *   `音效：轰！！！`           → sfx
  *

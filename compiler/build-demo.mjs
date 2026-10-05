@@ -43,6 +43,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
+import { escapeText as esc } from '../production/src/script.mjs';
 import { BRANCH_POINTS, ENDS, DEATH_HINT } from './branches.mjs';
 import { bgForScene } from './bg-rules.mjs';
 import {
@@ -207,14 +208,7 @@ function sayLine(text, who, idx) {
 // ═══════════════════════════════════════════════════════════════════════════
 
 /** WebGAL 场景脚本的转义：冒号/分号/花括号/竖线 */
-const esc = (s) =>
-  String(s ?? '')
-    .replace(/\\/g, '\\\\')
-    .replace(/\{/g, '\\{')
-    .replace(/\}/g, '\\}')
-    .replace(/:/g, '\\:')
-    .replace(/\|/g, '\\|')
-    .replace(/;/g, '\\;');
+// Shared with the production layer; imported above without compiler side effects.
 
 // ═══════════════════════════════════════════════════════════════════════════
 //  分支锚点校验（锚点必须唯一命中，否则玩家可能在错的地方看到选项）

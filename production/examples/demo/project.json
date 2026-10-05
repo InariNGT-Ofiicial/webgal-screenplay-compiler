@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "name": "Production Kit Demo",
+  "gameKey": "production-kit-demo-v1",
+  "titleImage": "title.png",
+  "titleMusic": "calm.wav",
+  "checkpoints": true,
+  "characters": {
+    "guide": {"file": "guide.png", "profile": {"height": 1400, "top": 30, "facing": 1, "displayPixelScale": 0.85}},
+    "visitor": {"file": "visitor.png", "profile": {"height": 1400, "top": 30, "facing": -1, "displayPixelScale": 0.85}}
+  },
+  "display": {"ruby": [{"base": "信标", "note": "Beacon"}]},
+  "chapters": [
+    {"id": "chapter01", "title": "抵达", "beats": [
+      {"id": "arrival", "lines": ["say:欢迎来到这座安静的观测站。 -speaker=向导 -figureId=guide;"]},
+      {"id": "visitor", "lines": ["say:我想看看窗外的信标（Beacon）。 -speaker=访客 -figureId=visitor;"]},
+      {"id": "panorama", "lines": [":窗外的灯光映在玻璃上。"]},
+      {"id": "departure", "lines": [":访客离开窗边，走向走廊。"]},
+      {"id": "return", "lines": ["say:我们在这里等下一次广播。 -speaker=向导 -figureId=guide;"]}
+    ]},
+    {"id": "chapter02", "title": "夜间", "beats": [
+      {"id": "night", "lines": [":走廊里的灯暗了下来。"]},
+      {"id": "radio", "lines": ["say:观测记录已经接收。 -speaker=广播;"]},
+      {"id": "morning", "lines": ["say:这次演示到这里结束。 -speaker=向导 -figureId=guide;"]}
+    ]}
+  ],
+  "cues": {
+    "backgrounds": [{"at": "arrival", "file": "station.png"}, {"at": "night", "file": "corridor.png"}],
+    "presence": [
+      {"at": "arrival", "enter": [{"id": "guide", "side": "left"}]},
+      {"at": "visitor", "enter": [{"id": "visitor", "side": "right"}]},
+      {"at": "departure", "exit": ["visitor"]},
+      {"at": "morning", "enter": [{"id": "guide", "side": "left"}]}
+    ],
+    "shots": [{"from": "panorama", "to": "return", "file": "window.png", "title": "窗外", "media": false}],
+    "blackouts": [{"from": "night", "to": "morning"}],
+    "music": [{"at": "arrival", "file": "calm.wav", "volume": 30}],
+    "musicRanges": [{"from": "panorama", "to": "return", "file": "pulse.wav", "volume": 30}],
+    "sounds": [{"at": "radio", "file": "signal.wav", "volume": 50}]
+  },
+  "credits": ["intro:感谢体验|WebGAL Production Kit|全部示例文本与几何占位图均由本工具生成 -hold -next -fontSize=small -backgroundColor=#142333;", "choose:返回标题:_production_title;", "label:_production_title;"]
+}

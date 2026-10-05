@@ -1,0 +1,161 @@
+{
+  "version": "0.2.0",
+  "date": "2026-10-05",
+  "upstreamRepository": "InariNGT-Ofiicial/webgal-screenplay-compiler",
+  "baseCommit": "8ca007cb3be4f37efca23f1c2142fe67b94dab11",
+  "integration": "compiler game/ -> native import -> owned-file install -> WebGAL native start",
+  "environment": {
+    "platform": "Windows",
+    "node": "v24.21.0",
+    "webgal": "4.6.5 official web release",
+    "browser": "Chromium headless"
+  },
+  "offline": {
+    "screenplay": 70,
+    "split": 26,
+    "productionAndIntegration": 46,
+    "totalPassed": 142,
+    "failed": 0,
+    "notes": "Private full-work regressions remain explicitly unavailable; no private screenplay is included. Optional segmentit enhancement was absent during the final test run."
+  },
+  "repositoryChecks": {
+    "dependencyClosure": true,
+    "realModuleLoading": true,
+    "assetRuleAlignment": true,
+    "documentationReferences": true,
+    "measuredSourceSizes": true,
+    "negativeControls": true
+  },
+  "browser": {
+    "pass": true,
+    "checks": [
+      {
+        "name": "runtime observes official snapshots",
+        "pass": true
+      },
+      {
+        "name": "two chapters save through native menus",
+        "pass": true
+      },
+      {
+        "name": "chapter autosaves use native slots one and two",
+        "pass": true
+      },
+      {
+        "name": "eight visible native save slots",
+        "pass": true
+      },
+      {
+        "name": "saved records have native preview images",
+        "pass": true
+      },
+      {
+        "name": "loading a checkpoint resumes and safely overwrites its native slot",
+        "pass": true
+      },
+      {
+        "name": "native demo music plays after a real user gesture",
+        "pass": true
+      },
+      {
+        "name": "no browser runtime errors",
+        "pass": true
+      },
+      {
+        "name": "no missing runtime assets",
+        "pass": true
+      },
+      {
+        "name": "save failure exposes a retry control",
+        "pass": true
+      },
+      {
+        "name": "trusted input cannot skip a failed chapter save",
+        "pass": true
+      },
+      {
+        "name": "retry recovers by writing the real native save",
+        "pass": true
+      }
+    ],
+    "errors": [],
+    "missingRequiredAssets": [],
+    "optionalMissing": [
+      {
+        "status": 404,
+        "path": "/lib/live2d.min.js"
+      },
+      {
+        "status": 404,
+        "path": "/lib/live2dcubismcore.min.js"
+      }
+    ],
+    "profiles": [
+      {
+        "mode": "existing-checkpoint-demo -> byte-preserving native import",
+        "passed": 12
+      },
+      {
+        "mode": "plain native scenes -> explicit checkpoint insertion",
+        "passed": 12
+      }
+    ],
+    "profileChecksPassed": 24,
+    "nativeImportCheckpointChecks": [
+      {
+        "name": "runtime observes official snapshots",
+        "pass": true
+      },
+      {
+        "name": "two chapters save through native menus",
+        "pass": true
+      },
+      {
+        "name": "chapter autosaves use native slots one and two",
+        "pass": true
+      },
+      {
+        "name": "eight visible native save slots",
+        "pass": true
+      },
+      {
+        "name": "saved records have native preview images",
+        "pass": true
+      },
+      {
+        "name": "loading a checkpoint resumes and safely overwrites its native slot",
+        "pass": true
+      },
+      {
+        "name": "native demo music plays after a real user gesture",
+        "pass": true
+      },
+      {
+        "name": "no browser runtime errors",
+        "pass": true
+      },
+      {
+        "name": "no missing runtime assets",
+        "pass": true
+      },
+      {
+        "name": "save failure exposes a retry control",
+        "pass": true
+      },
+      {
+        "name": "trusted input cannot skip a failed chapter save",
+        "pass": true
+      },
+      {
+        "name": "retry recovers by writing the real native save",
+        "pass": true
+      }
+    ]
+  },
+  "limits": [
+    "Chapter checkpoint extension targets WebGAL 4.6.5 Chinese native UI.",
+    "The file-level compiler integration fixture uses opaque resource bytes; generated PNG/WAV demo verifies actual playback.",
+    "The original private screenplay and all its routes are not part of this public test suite.",
+    "Node 22/24 Linux/Windows CI is configured; GitHub run results are recorded separately."
+  ]
+}
