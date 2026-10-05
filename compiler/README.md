@@ -1,7 +1,7 @@
 # compiler · 编译链
 
-> **本仓库唯一的代码目录。** 它把一份文字剧本编译成 **WebGAL 原生场景文件**——
-> 产物丢进未修改的上游 WebGAL 就能玩，**运行时不跑任何本项目写的代码**。
+> **文字剧本编译目录。** 它把一份文字剧本编译成 **WebGAL 原生场景文件**——
+> 产物丢进未修改的上游 WebGAL 就能玩，默认运行时仅使用 WebGAL。生产交付与可选章节存档扩展见 [`../docs/production-integration.md`](../docs/production-integration.md)。
 
 - 完整架构与设计取舍 → [`../docs/architecture.md`](../docs/architecture.md)
 - 改这个目录前的不变量与红线 → [`AGENTS.md`](AGENTS.md)
@@ -66,7 +66,7 @@ webgal-tool/dist/game/         WebGAL 原生场景文件 + config.txt
 |---|---|---|
 | `extract-docx.py` | docx → 结构化 JSON（走 `zipfile`，比 python-docx 可靠） | 144 |
 | `docx-to-mainline.mjs` | 结构化 JSON → 主线指令流 | 503 |
-| `text-split.mjs` | **文本框切分器的唯一实现** | 485 |
+| `text-split.mjs` | **文本框切分器的唯一实现** | 483 |
 | `textbox.mjs` | **文本框几何的唯一真源**（真机实测） | 117 |
 | `editorial.mjs` | **「编辑层表述」的唯一识别实现**（预告 / 卷末旗标） | 70 |
 | `anchor.mjs` | 剧情锚点的唯一解析实现（按内容子串匹配，不依赖断框） | 53 |
@@ -83,7 +83,7 @@ webgal-tool/dist/game/         WebGAL 原生场景文件 + config.txt
 | `bgm-cues.mjs` | 场景 → 配乐落点（**`SCENE_CUE` 出厂为空**） | 222 |
 | `segments.mjs` | 按实际放映时长切「配乐段落」+ 时长模型 | 286 |
 | `paths.mjs` | ★ **产物路径与文件名的唯一真源**（主线场景名改一处，四个脚本跟着动） | 61 |
-| `build-demo.mjs` | 主线 → WebGAL 原生场景（章节卡 / 分支跳转 / 配乐落点 / `config.txt`） | 1023 |
+| `build-demo.mjs` | 主线 → WebGAL 原生场景（章节卡 / 分支跳转 / 配乐落点 / `config.txt`） | 1017 |
 | `demo-assets.mjs` | 占位背景与立绘（**纯 Node 手写 PNG**，零美术依赖） | 816 |
 | `check-syntax.mjs` | 全仓语法体检（**JS + Python 双侧**，各带反向自测） | 243 |
 | `screenplay.mjs` | **剧本规范体检器**：把 AVG 编剧规范变成可执行检查（7 类） | 473 |
@@ -91,7 +91,7 @@ webgal-tool/dist/game/         WebGAL 原生场景文件 + config.txt
 | `test-screenplay.mjs` | 体检器测试（70 项） | 379 |
 | `test-split.mjs` | 切分器测试（26 项） | 291 |
 
-**合计 24 个脚本（21 `.mjs` + 3 `.py`）· 7729 行。**（另有 2 个 JSON 数据文件，不计入行数）
+**合计 24 个脚本（21 `.mjs` + 3 `.py`）· 7721 行。**（另有 2 个 JSON 数据文件，不计入行数）
 > ★ 这行数字**由 `node verify-repo.mjs` 的探测器 ⑤ 对着实测核**（口径 = 本目录下全部 `.mjs` + `.py`）。
 > 改了代码就把这里一起改 —— 忘了的话它会报红，不会静默漂移。
 

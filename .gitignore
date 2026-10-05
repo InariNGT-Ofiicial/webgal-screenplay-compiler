@@ -46,3 +46,10 @@ node_modules/
 *.key
 auth.json
 cookies*.json
+
+# Production builds, releases and local engine installations
+/build/
+/releases/
+/production/build/
+/production/webgal/
+.production-backup/

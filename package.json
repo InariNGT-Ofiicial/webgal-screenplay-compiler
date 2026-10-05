@@ -1,0 +1,17 @@
+{
+  "name": "webgal-screenplay-compiler",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "repository": { "type": "git", "url": "https://github.com/InariNGT-Ofiicial/webgal-screenplay-compiler.git" },
+  "scripts": {
+    "test": "node compiler/test-screenplay.mjs && node compiler/test-split.mjs && npm --prefix production test",
+    "check": "node verify-repo.mjs --selftest && node verify-repo.mjs && node compiler/check-syntax.mjs --all && npm --prefix production run check",
+    "demo": "npm --prefix production run demo",
+    "import:compiler": "node production/tools/import-game.mjs",
+    "serve": "node production/tools/serve.mjs webgal-tool/dist",
+    "audit": "node production/tools/audit-source.mjs"
+  }
+}

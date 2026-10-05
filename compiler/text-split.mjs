@@ -208,8 +208,6 @@ function loadSegmenter() {
     process.env.VN_SEGMENTER,
     path.join(ROOT, 'node_modules', 'segmentit'),
     path.join(HERE, 'node_modules', 'segmentit'),
-    // 本机受管 node 工作区（`npm i --prefix` 装过一次就在这里）
-    path.join(process.env.USERPROFILE || '', '.workbuddy/binaries/node/workspace/node_modules/segmentit'),
   ].filter(Boolean);
   const require = createRequire(import.meta.url);
   for (const c of cands) {

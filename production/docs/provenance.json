@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-05",
+  "scope": "Codex production tooling only",
+  "baseline": "V9.1 delivery",
+  "extraction": [
+    {
+      "sourceComponent": "presentation.mjs",
+      "sourceSha256": "2c2f5899d7ff026c5eba7fcb594cd420516b1581374d2cc7514b39a196b5bc3b",
+      "target": "src/presentation.mjs",
+      "method": "data-driven adaptation"
+    },
+    {
+      "sourceComponent": "presentation-plan.mjs",
+      "sourceSha256": "cb5160ebf81c7cc28a6592f314a85c2b64364920b1e1d9ca53dcb2310c091aab",
+      "target": "src/portrait.mjs",
+      "method": "uniform scale formula"
+    },
+    {
+      "sourceComponent": "assemble-release.mjs",
+      "sourceSha256": "849c237c298ddcf81035efda9eedc51ed44b15065097f3bd875e877f89ac0609",
+      "target": "src/assembly.mjs",
+      "method": "native chapter assembly"
+    },
+    {
+      "sourceComponent": "text-notes-v8.mjs",
+      "sourceSha256": "4435c843dd51aee1242c09534c472f415a9b3b30d368d4897034b6b3952ea4ad",
+      "target": "src/presentation.mjs",
+      "method": "explicit display formatting"
+    },
+    {
+      "sourceComponent": "release-runtime.js",
+      "sourceSha256": "8b909f97584d51e44a5517a27b2ebac00f3c0e937384fda8ea267579dbbe28bf",
+      "target": "runtime/release-runtime.js",
+      "method": "native menu integration; failure guard added"
+    },
+    {
+      "sourceComponent": "ui-v8.css",
+      "sourceSha256": "85b6626c7596cd10b037fb647ee91f4807209f44a6cfc5ea7e7a0ec738ae66aa",
+      "target": "runtime/native-ui.css",
+      "method": "native eight-slot layout"
+    },
+    {
+      "sourceComponent": "launch.ps1",
+      "sourceSha256": "6fdc0ea6846789d7a0a438e907e9c989d5d2ca07c5e37cc2aa5eedc18c9c2338",
+      "target": "launch.ps1",
+      "method": "relative service lifecycle"
+    },
+    {
+      "sourceComponent": "stop.ps1",
+      "sourceSha256": "9a84904a61afaa7958540b1e14847e945725c1a568d51d368e027c5a05c53251",
+      "target": "stop.ps1",
+      "method": "PID and instance ownership"
+    },
+    {
+      "sourceComponent": "package_release.py",
+      "sourceSha256": "0c13450ae9a4ed24a88a5e2fe84f16dd86656f1acdf226f25c3b559c6dc460a7",
+      "target": "tools/package-game.mjs",
+      "method": "verified release mirror"
+    },
+    {
+      "sourceComponent": "verify_title_v91.mjs",
+      "sourceSha256": "76166f40d52332a09cbc2183183a7838956d4437cba4d4de4df1b7b938880a2d",
+      "target": "tools/e2e.mjs",
+      "method": "trusted browser gestures and native playback"
+    }
+  ],
+  "exclusions": [
+    "work-specific text and cast",
+    "art, recordings, OST and fonts",
+    "voice research",
+    "private logs and evidence",
+    "upstream engine distribution",
+    "previous-phase candidate"
+  ]
+}

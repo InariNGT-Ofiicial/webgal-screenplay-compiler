@@ -54,6 +54,10 @@ const LIB_ENTRIES = [
   'compiler/bg-rules.mjs', 'compiler/branches.mjs', 'compiler/anchor.mjs',
   'compiler/sfx-rules.mjs', 'compiler/bgm-cues.mjs', 'compiler/md-html.mjs',
   'compiler/paths.mjs',
+  'production/src/script.mjs', 'production/src/portrait.mjs',
+  'production/src/presentation.mjs', 'production/src/assembly.mjs',
+  'production/src/files.mjs', 'production/src/host.mjs',
+  'production/src/native-import.mjs', 'production/tools/verify-game.mjs',
 ];
 const SCRIPT_ENTRIES = [
   'compiler/docx-to-mainline.mjs', 'compiler/build-demo.mjs',
@@ -237,6 +241,7 @@ export function checkDocRefs(files) {
         path.resolve(ROOT, token),
         path.resolve(dir, token),
         path.resolve(ROOT, MODEL.src, token),
+        path.resolve(ROOT, 'production', token),
         path.resolve(ROOT, 'docs', token),
       ];
       if (cands.some((c) => existsSync(c))) continue;
