@@ -74,7 +74,9 @@ test('native import refuses output inside its source and unmanaged output', () =
   } finally { cleanup(dir); }
 });
 test('HTTP host adds checkpoint runtime only when the installed game includes it', async () => {
-  const dir=fixture(); let service; try { const game=gameIn(dir), dist=path.dirname(game); write(dist,'index.html','<head></head><body>native</body>'); service=createHost({dist,port:0}); const address=await service.start();
+  const dir=fixture(); let service; try { const game=gameIn(dir), dist=path.dirname(game); write(dist,'index.html','<head></head><body>native</body>');
+    const link=path.join(dir,'host-alias'); fs.symlinkSync(dist,link,process.platform==='win32'?'junction':'dir');
+    service=createHost({dist:link,port:0}); const address=await service.start();
     const url=`http://127.0.0.1:${address.port}/`; assert.equal(await(await fetch(url)).text(),'<head></head><body>native</body>');
     write(game,'release-runtime.js','/* opt-in fixture */'); assert.ok((await(await fetch(url)).text()).includes('/game/release-runtime.js'));
   } finally { if(service)await service.close(); cleanup(dir); }

@@ -1,5 +1,6 @@
 import http from 'node:http';
 import fs from 'node:fs/promises';
+import { realpathSync } from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
 const protocol = 'webgal-editor-preview-sync.v1', maxFrame = 16 * 1024 * 1024;
@@ -12,7 +13,7 @@ function frame(data, opcode = 1) {
   return Buffer.concat([header, body]);
 }
 export function createHost({ dist, port = 8895, host = '127.0.0.1', instanceRoot = path.dirname(dist) }) {
-  const root = path.resolve(dist), connections = new Set(); let latest = null;
+  const root = realpathSync(dist), connections = new Set(); let latest = null;
   const server = http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://localhost');

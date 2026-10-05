@@ -11,7 +11,7 @@ const patterns=[
 ];
 export function auditIndex(root=process.cwd(),denylist=[]) {
   const git=(...args)=>execFileSync('git',['-C',root,...args],{encoding:'utf8',windowsHide:true});
-  if(path.resolve(git('rev-parse','--show-toplevel').trim())!==path.resolve(root))throw Error('Initialize a dedicated repository here; refusing to audit the parent workspace');
+  if(path.relative(fs.realpathSync(git('rev-parse','--show-toplevel').trim()),fs.realpathSync(root))!=='')throw Error('Initialize a dedicated repository here; refusing to audit the parent workspace');
   const entries=git('ls-files','--stage','-z').split('\0').filter(Boolean),findings=[];
   if(!entries.length)throw Error('Empty index. Stage the intended source before auditing.');
   for(const entry of entries){const [metadata,name]=entry.split('\t');if(metadata.startsWith('120000'))findings.push({file:name,category:'symlink'});
