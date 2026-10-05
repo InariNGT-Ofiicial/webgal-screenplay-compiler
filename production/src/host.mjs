@@ -13,7 +13,8 @@ function frame(data, opcode = 1) {
   return Buffer.concat([header, body]);
 }
 export function createHost({ dist, port = 8895, host = '127.0.0.1', instanceRoot = path.dirname(dist) }) {
-  const root = realpathSync(dist), connections = new Set(); let latest = null;
+  // Match fs.promises.realpath's native resolution, including virtual runner drives.
+  const root = realpathSync.native(dist), connections = new Set(); let latest = null;
   const server = http.createServer(async (req, res) => {
     try {
       const url = new URL(req.url, 'http://localhost');
